@@ -1,4 +1,4 @@
-program PG1;
+program PRG;
 begin var int32 AAA, BBB, XXX, YYY;
 read (AAA);
 read (BBB);
