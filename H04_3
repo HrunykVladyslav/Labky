@@ -1,4 +1,4 @@
-program PG3;
+program PRG;
 begin var int32 AAA, BBB, CYA, CYB, XVL;
 read (AAA);
 read (BBB);
