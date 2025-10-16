@@ -20,7 +20,7 @@ if (AAA == BBB) & (AAA == CCC) & (BBB == CCC) {
 }
 
 if (AAA lt 0) | (BBB lt 0) | (CCC lt 0)  {
-   write(-1);
+   write(sub 1);
 }  else {
    write(0);
 }
