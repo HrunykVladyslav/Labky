@@ -25,7 +25,7 @@ if (AAA lt 0) | (BBB lt 0) | (CCC lt 0)  {
    write(0);
 }
 
-if ! (AAA lt (BBB add CCC) {
+if ! (AAA lt (BBB add CCC)) {
    write(10);
 }  else {
    write(0);
