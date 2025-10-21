@@ -10,7 +10,7 @@
 //#define USE_DFA_TO_ACCEPT_IDENTIFIER
 //#define USE_DFA_TO_ACCEPT_UNSIGNEDVALUE
 
-#define TOKENS_RE         "->|add|sub|\\*|==|[_0-9A-Za-z]+|[^ \t\r\f\v\n]"
+#define TOKENS_RE         "->|add|sub|\\*|==|[0-9A-Za-z]+|[^ \t\r\f\v\n]"
 #define KEYWORDS_RE       ";|->|add|sub|\\*|,|==|!=|\\[|\\]|\\(|\\)|\\{|\\}|program|var|begin|end|read|write|if|else|while|/|%|lt|gt|!|&|\\||int32"
 #define IDENTIFIERS_RE    "[A-Z][A-Z][A-Z]"
 #define UNSIGNEDVALUES_RE "0|[1-9][0-9]*"
@@ -574,4 +574,5 @@ int main(int argc, char* argv[]) {
 #endif
 
 	return 0;
+
 }
