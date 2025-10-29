@@ -665,5 +665,5 @@ int main() {
     );
     (void)getchar();
 #endif
-
 }
+
