@@ -1,3 +1,4 @@
+
 #define _CRT_SECURE_NO_WARNINGS
 #define WIN32_LEAN_AND_MEAN
 /************************************************************************
@@ -226,7 +227,7 @@ char* process_term(char* inputStr, int startState, int* nextFreeState) {
                 ++inputStr;
             }
             ++inputStr;
-            ++* nextFreeState;
+            ++*nextFreeState;
         }
 
         startState = *nextFreeState - 1;
@@ -296,7 +297,7 @@ char* process_alternation(char* inputStr, int baseState, int* nextFreeState) {
         }
     }
 
-    ++* nextFreeState;
+    ++ * nextFreeState;
 
     if (inputStr[0] == ')' && inputStr[1] != ')') {
         ++inputStr;
@@ -389,7 +390,7 @@ void removing_unreachable_DFA_states(int* dead_state, int* nextFreeState) {
                           "|))"\
                           "|{"\
                           "|}"\
-                          "\\*"\
+                          "|*"\
                           "|/"\
                           "|%"\
                           "|lt"\
@@ -429,7 +430,7 @@ void removing_unreachable_DFA_states(int* dead_state, int* nextFreeState) {
                           "|continue"\
                           "|break"\
                           "|int32"\
-                          "|\\*"\
+                          "|*"\
                           "|/"\
                           "|%"\
                           "|lt"\
@@ -465,9 +466,9 @@ void removing_unreachable_DFA_states(int* dead_state, int* nextFreeState) {
                           "|continue"\
                           "|break"\
                           "|int32"\
-                          "|\\*"\
+                          "|*"\
                           "|/"\
-                          "|%%"\
+                          "|%"\
                           "|lt"\
                           "|gt"\
                           ")"\
@@ -498,7 +499,7 @@ void removing_unreachable_DFA_states(int* dead_state, int* nextFreeState) {
                           "|read"\
                           "|w(rite|hile)"\
                           "|i(f|nt32)"\
-                          "|\\*"\
+                          "|*"\
                           "|%"\
                           "|/"\
                           "|lt"\
@@ -519,7 +520,7 @@ void removing_unreachable_DFA_states(int* dead_state, int* nextFreeState) {
                           //\0
 
 
-void generatorB(char* rn, char * fileNameA, char* fileNameB, char* tableName) { // "C"
+void generatorB(char* rn, char* fileNameA, char* fileNameB, char* tableName) { // "C"
     printf("\nNOT FULLY IMPLEMENTED!\n\n");
 
     int dead_state = -1;
@@ -569,12 +570,12 @@ void generatorB(char* rn, char * fileNameA, char* fileNameB, char* tableName) { 
     }
     printf(".\n");
     printf("  Dead state (%s): Q%03d .\n", tableName, dead_state);
-    
+
     int state_counter = nextFreeState;
 
     generate_transition_table(state_counter);
 
-    if (state_counter <= 28) {       
+    if (state_counter <= 28) {
         printf("Transition table (%s) of a quasi-deterministic finite state machine (QFA):\n", tableName);
         print_transition_table(state_counter, -1);
     }
@@ -593,9 +594,9 @@ void generatorB(char* rn, char * fileNameA, char* fileNameB, char* tableName) { 
     print_transition_table_to_file(fileNameA, tableName, state_counter, dead_state);
 }
 
-void printAlternationSymbol(char * exludedSymbols) {
+void printAlternationSymbol(char* exludedSymbols) {
     char printAlternationSeparator = 0;
-    for (unsigned int symbols = 1; symbols <= 255; ++symbols){
+    for (unsigned int symbols = 1; symbols <= 255; ++symbols) {
         char* exludedSymbols_ = exludedSymbols;
         for (; *exludedSymbols_; ++exludedSymbols_) {
             if (*exludedSymbols_ == symbols) {
@@ -616,11 +617,11 @@ void printAlternationSymbol(char * exludedSymbols) {
                     symbols == '\"') {
                     printf("\\%c", symbols);
                 }
-                else if (symbols == '('  ||
-                    symbols == ')'  ||
-                    symbols == '|'  ||
-                    symbols == '~'  ||
-                    symbols == '^' ) {
+                else if (symbols == '(' ||
+                    symbols == ')' ||
+                    symbols == '|' ||
+                    symbols == '~' ||
+                    symbols == '^') {
                     printf("%c%c", symbols, symbols);
                 }
                 else {
@@ -654,16 +655,15 @@ int main() {
     return 0;
 #else
     "->|==|!=|!|&|\\||add|sub|\\*|/|%|lt|gt|\\(|\\)|\\{|\\}|\\[|\\]|,|;|[_0-9A-Za-z]+|[^ \t\r\f\v\n]"
-    //;|:=|=:|\\+|-|\\*|,|==|!=|:|\\[|\\]|\\(|\\)|\\{|\\}|<=|>=|[_0-9A-Za-z]+|[^ \t\r\f\v\n]
-    //";:=+-*,!:[](){}<>"
-    "_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    " \t\r\f\v\n";
+        //;|:=|=:|\\+|-|\\*|,|==|!=|:|\\[|\\]|\\(|\\)|\\{|\\}|<=|>=|[_0-9A-Za-z]+|[^ \t\r\f\v\n]
+        //";:=+-*,!:[](){}<>"
+        "_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        " \t\r\f\v\n";
     printAlternationSymbol((char*)
         ";=+-*,!:[](){}<>&|"
         "_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-        " \t\r\f\v\n"   
+        " \t\r\f\v\n"
     );
     (void)getchar();
 #endif
 }
-
